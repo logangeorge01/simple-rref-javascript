@@ -35,7 +35,8 @@ function rref(A) {
   return A;
 }
 
-function main() {
+function solve() {
+  document.getElementById('rref').style.display = 'none';
   var text = document.getElementById('matrix').value;
   var A = text.split('\n');
   for (var i=0; i<A.length; i++) {
@@ -46,12 +47,47 @@ function main() {
   }
 
   A = rref(A);
-  document.getElementById('result').innerHTML = '';
+  console.log(A);
+  document.getElementById('rref').innerHTML = '';
   for (var i=0; i<A.length; i++) {
     for (var j=0; j<A[i].length; j++) {
-      document.getElementById('result').innerHTML += '&nbsp;' + parseFloat(A[i][j].toFixed(3)) + '&nbsp;';
+      document.getElementById('rref').innerHTML += '&nbsp;' + parseFloat(A[i][j].toFixed(3)) + '&nbsp;';
     }
-    document.getElementById('result').innerHTML += '<br>';
+    document.getElementById('rref').innerHTML += '<br>';
   }
-  document.getElementById('result').style.display = 'inline-block';
+  document.getElementById('rref').style.display = 'inline-block';
+}
+
+function determinant(A) {
+  var n = A.length;
+  if (n==2) {
+    return (A[0][0]*A[1][1])-(A[0][1]*A[1][0]);
+  }
+  A = rref(A);
+  var det = A[0][0];
+
+  for (var i=1; i<n; i++) {
+    det*=A[i][i];
+  }
+  return det;
+}
+
+function det() {
+  document.getElementById('det').style.display = 'none';
+  var text = document.getElementById('matrix').value;
+  var A = text.split('\n');
+  for (var i=0; i<A.length; i++) {
+    A[i] = A[i].trim().split(' ');
+    if (A.length != A[i].length) {
+      document.getElementById('det').innerHTML = 'matrix not square';
+      document.getElementById('det').style.display = 'inline-block';
+      return;
+    }
+    for (var j=0; j<A[i].length; j++) {
+      A[i][j] = parseFloat(A[i][j]);
+    }
+  }
+
+  document.getElementById('det').innerHTML = 'determinant: ' + determinant(A);
+  document.getElementById('det').style.display = 'inline-block';
 }

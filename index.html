@@ -1,13 +1,20 @@
 <html>
   <head>
+    <title>rref</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="rref.js"></script>
   </head>
   <body style="display:flex;align-items:center;justify-content:center;flex-direction:column;">
-    <textarea id="matrix" style="height: 100px;width: 200px;font-size: 20px;" placeholder="something like
-1 2 3
-4 5 6"></textarea>
-    <button type="button" style="font-size: 20px;" onclick="main()">rref</button><br>
+    <h1>determinant not working rn for non-2x2</h1>
+    <div style="font-size: 20px;font-family: sans-serif;">input something like<br>1 2 3<br>4 5 6</div><br>
+    <textarea id="matrix" style="height: 100px;width: 200px;font-size: 20px;" placeholder="matrix"></textarea>
+    <div style="display:flex;flex-direction:row;">
+      <button type="button" style="font-size: 20px;margin: 5px;" onclick="solve()">rref</button>
+      <button type="button" style="font-size: 20px;margin: 5px;" onclick="det()">determinant</button>
+    </div>
 
-    <div id="result" style="display:none;font-size: 20px; font-family: sans-serif;border-left: 2px solid #000;border-right: 2px solid #000;padding: 5px;border-radius:10%;"></div>
+    <div id="rref" style="margin-top: 5px;display:none;font-size: 20px; font-family: sans-serif;border-left: 2px solid #000;border-right: 2px solid #000;padding: 5px;border-radius:10%;"></div>
+    <div id="det" style="margin-top:10px;display:none;font-size: 20px; font-family: sans-serif;"></div>
   </body>
 </html>
